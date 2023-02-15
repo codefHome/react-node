@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  api:
+    container_name: api
+    restart: always
+    build: ./back-end
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    volumes:
+    - ./back-end:/app
+  web:
+    build: ./front-end
+    container_name: my_web
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/front-end/app
+    stdin_open: true
+    tty: true
+    restart: always
+  db:
+    container_name: postgres
+    image: postgres
+    ports:
+      - '5433:5432'
+    volumes:
+      - data:/data/db
+    environment:
+      - POSTGRES_PASSWORD=1Bedada@Home
+      - POSTGRES_DB=salesorder
+
+volumes: 
+ data: {}
