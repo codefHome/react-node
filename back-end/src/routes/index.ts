@@ -10,7 +10,6 @@ const router = express.Router()
 
 router.post("/items/createItem",async(req:Request,res:Response): Promise<Response>=>{
 const valid= validateItemsData(req.body);
-console.log(valid)
 if(valid.error){
  console.log(valid.error)
  return res.status(400).json(valid.error.details[0].message)
@@ -63,7 +62,7 @@ if(valid.error){
      return res.status(200).json(deletedItem);
    })
    const getPagination = (page:any, size:any) => {
-    const limit = size ? +size : 3;
+    const limit = size ? +size : 6;
     const offset = page ? page * limit : 0;
   
     return { limit, offset };

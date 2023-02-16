@@ -1,0 +1,57 @@
+{
+    "totalItems": 5,
+    "items": [
+        {
+            "ItemId": 1,
+            "name": "item6",
+            "description": "This item is has hight quality, you will not reget buying it",
+            "price": 50,
+            "salesTax": 11,
+            "createdAt": "2023-02-16T13:16:15.586Z",
+            "sku": "this item is for by for all people",
+            "quantity": 20
+        },
+        {
+            "ItemId": 2,
+            "name": "item1",
+            "description": "This item is has hight quality, you will not reget buying it",
+            "price": 50,
+            "salesTax": 11,
+            "createdAt": "2023-02-16T16:27:58.244Z",
+            "sku": "this item is for by for young people",
+            "quantity": 20
+        },
+        {
+            "ItemId": 3,
+            "name": "item2",
+            "description": "This item is has hight quality, you will not reget buying it",
+            "price": 50,
+            "salesTax": 11,
+            "createdAt": "2023-02-16T16:27:58.244Z",
+            "sku": "this item is for by for male",
+            "quantity": 20
+        },
+        {
+            "ItemId": 4,
+            "name": "item3",
+            "description": "This item is has hight quality, you will not reget buying it",
+            "price": 50,
+            "salesTax": 11,
+            "createdAt": "2023-02-16T16:27:58.244Z",
+            "sku": "this item is for by for women",
+            "quantity": 20
+        },
+        {
+            "ItemId": 5,
+            "name": "item4",
+            "description": "This item is has hight quality, you will not reget buying it",
+            "price": 50,
+            "salesTax": 11,
+            "createdAt": "2023-02-16T16:27:58.244Z",
+            "sku": "this item is for by for children",
+            "quantity": 20
+        }
+    ],
+    "totalPages": 1,
+    "currentPage": 0
+}

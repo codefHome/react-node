@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useContext, useState } from "react";
 import {
   Button,
   Form,
@@ -8,16 +9,18 @@ import {
 
 import ItemTable from "./item.table";
 import ItemCreateForm, { ItemTypes } from "./Item-create-form";
-import { deleteItem, findById, getAllItems } from "../api/item.api";
+import { deleteItem} from "../api/item.api";
 import { ColumnsType } from "antd/es/table";
 import { ItemContext, ItemContextProvider } from "../sale.item.context";
-import { AddIcon, DeleteIcon, EditIcon } from "../svg/item-sale.icons";
+import {DeleteIcon, EditIcon } from "../svg/item-sale.icons";
 
-const ViewSaleItems = ({}) => {
-  const { items, ItemId, setItemId, mode, setMode } = useContext(ItemContext);
+const ViewSaleItems = () => {
+  const {ItemId,items, setItemId, mode, setMode } = useContext(ItemContext);
   const [ItemForm] = Form.useForm();
+
   const handleDelete = async (items: ItemTypes) => {
     await deleteItem(items);
+
   };
 
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -27,6 +30,8 @@ const ViewSaleItems = ({}) => {
     setMode?.("create");
     setOpenDrawer(true);
   };
+
+
   const showUpdateDrawer = (items: any) => {
     setMode?.("edit");
     setItemId?.(items?.ItemId);
@@ -56,6 +61,12 @@ const ViewSaleItems = ({}) => {
       key: "name",
       width: 100,
       fixed: "left",
+    },
+    {
+      title: "createdAt",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      width: 200,
     },
     {
       title: "Price",
@@ -93,6 +104,8 @@ const ViewSaleItems = ({}) => {
       title: "Description",
       dataIndex: "description",
       key: "description",
+      width:300
+      
     },
     {
       title: "Action",
@@ -117,7 +130,7 @@ const ViewSaleItems = ({}) => {
             okText="Yes"
             onConfirm={() => handleDelete(items)}
           >
-            <a href="">
+            <a href="#">
               <DeleteIcon />
             </a>
           </Popconfirm>
@@ -137,8 +150,8 @@ const ViewSaleItems = ({}) => {
                 type="link"
                 onClick={showDrawer}
               >
-                {" "}
-                <strong> Add Item</strong>{" "}
+                
+                <strong> Add Item</strong>
               </Button>
             </span>
 

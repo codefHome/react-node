@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Drawer, Form, Input, InputNumber, notification } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { createItem, findByName, updateItem } from "../api/item.api";
-import { ItemContext, ItemContextProvider } from "../sale.item.context";
+import { ItemContext } from "../sale.item.context";
 import { NotificationPlacement } from "antd/es/notification/interface";
 
 interface ItemFormProps {
@@ -28,21 +28,12 @@ export interface ItemTypes {
 
 const ItemCreateForm = ({
   onClose,
-  onChildrenDrawerClose,
-  showChildrenDrawer,
-  childrenDrawer,
   open,
   itemId,
   mode,
   ItemForm,
 }: ItemFormProps) => {
-  const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
-  const Context = React.createContext({ name: "Default" });
-  const { items, setMode, data, setData } = useContext(ItemContext);
-
-  const onFormLayoutChange = ({ disabled }: { disabled: boolean }) => {
-    setComponentDisabled(disabled);
-  };
+  const { setMode, data, setData } = useContext(ItemContext);
   const [validationStatus, setValidationStatus] = useState<any>();
   const [api, contextHolder] = notification.useNotification();
 
@@ -78,18 +69,7 @@ const ItemCreateForm = ({
     ItemForm.resetFields();
     setMode?.("create");
   };
-  const item = items?.filter((item) => item.ItemId === itemId);
-  const saleItem = Object.assign(
-    {},
-    item?.map((item) => ({
-      itemName: item.name,
-      itemPrice: item.price,
-      itemTax: item.salesTax,
-      itemSku: item.sku,
-      itemQuantity: item.quantity,
-      itemDescription: item.description,
-    }))
-  );
+  
   return (
     <>
       <Drawer
@@ -113,9 +93,9 @@ const ItemCreateForm = ({
         placement="top"
         mask={true}
         contentWrapperStyle={{
-          width: "1000px",
-          marginRight: "275px",
-          marginLeft: "265px",
+          width: "800px",
+          marginRight: "295vw",
+          marginLeft: "365px",
           marginTop: "100px",
           height: "550px",
         }}
@@ -127,7 +107,7 @@ const ItemCreateForm = ({
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 14 }}
               layout="horizontal"
-              onValuesChange={onFormLayoutChange}
+            
               style={{ maxWidth: 600 }}
               form={ItemForm}
               onFinish={onFinish}
