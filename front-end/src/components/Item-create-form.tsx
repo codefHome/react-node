@@ -14,6 +14,8 @@ interface ItemFormProps {
   itemId?: number | undefined;
   mode?: "create" | "edit";
   ItemForm?: any;
+  setItems:(value:any)=>void
+
 }
 export interface ItemTypes {
   ItemId: number;
@@ -32,11 +34,11 @@ const ItemCreateForm = ({
   itemId,
   mode,
   ItemForm,
+  setItems
 }: ItemFormProps) => {
-  const { setMode, data, setData } = useContext(ItemContext);
+  const { setMode, data, setData} = useContext(ItemContext);
   const [validationStatus, setValidationStatus] = useState<any>();
   const [api, contextHolder] = notification.useNotification();
-
   const openNotification = (placement: NotificationPlacement) => {
     api.info({
       message: "Success Message",
@@ -48,13 +50,16 @@ const ItemCreateForm = ({
     });
   };
   const handleCreate = async (value: any) => {
-    await createItem(value);
+  const newItem=await createItem(value);
+  setItems((oldItem: any) => [...oldItem,newItem])
     openNotification("topRight");
     ItemForm.resetFields();
-    setData?.(!data);
+   
   };
   const handleUpdate = async (value: any) => {
-    await updateItem(itemId, value);
+   const newItem= await updateItem(itemId, value);
+    setItems((oldItem: any[]) => oldItem.filter(item =>item.ItemId !== newItem.ItemId))
+    setItems((oldItem:any[]) =>[...oldItem,newItem])
     openNotification("topRight");
     ItemForm.resetFields();
     setData?.(!data);

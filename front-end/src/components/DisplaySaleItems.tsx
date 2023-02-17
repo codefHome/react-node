@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Form,
@@ -9,17 +9,20 @@ import {
 
 import ItemTable from "./item.table";
 import ItemCreateForm, { ItemTypes } from "./Item-create-form";
-import { deleteItem} from "../api/item.api";
+import { deleteItem, getAllItems} from "../api/item.api";
 import { ColumnsType } from "antd/es/table";
 import { ItemContext, ItemContextProvider } from "../sale.item.context";
 import {DeleteIcon, EditIcon } from "../svg/item-sale.icons";
 
-const ViewSaleItems = () => {
-  const {ItemId,items, setItemId, mode, setMode } = useContext(ItemContext);
-  const [ItemForm] = Form.useForm();
 
+const ViewSaleItems = () => {
+  const {ItemId, setItemId, mode, setMode } = useContext(ItemContext);
+  const [ItemForm] = Form.useForm();
+const[items,setItems]=useState<ItemTypes[]>([])
   const handleDelete = async (items: ItemTypes) => {
-    await deleteItem(items);
+   const deleted= await deleteItem(items);
+   setItems(oldItem => oldItem.filter(item=> item.ItemId !== deleted.ItemId))
+
 
   };
 
@@ -30,7 +33,11 @@ const ViewSaleItems = () => {
     setMode?.("create");
     setOpenDrawer(true);
   };
-
+  useEffect(()=>{
+    (async()=>{
+    setItems(await getAllItems());
+    })()
+  },[])
 
   const showUpdateDrawer = (items: any) => {
     setMode?.("edit");
@@ -165,6 +172,8 @@ const ViewSaleItems = () => {
           itemId={ItemId}
           mode={mode}
           ItemForm={ItemForm}
+          setItems={setItems}
+      
         />
       </ItemContextProvider>
     </>
