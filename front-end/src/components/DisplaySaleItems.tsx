@@ -104,7 +104,7 @@ const ViewSaleItems = () => {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      width:300
+      width:200
       
     },
     {
