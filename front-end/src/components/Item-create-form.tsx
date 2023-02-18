@@ -85,9 +85,9 @@ const ItemCreateForm = ({
                 {mode === "create"
                   ? "Sale Item Order Entry Form"
                   : "Sale Item Order Update Form"}
-              </strong>{" "}
+              </strong>
               <Button className="float-right" onClick={handleOnClose}>
-                {" "}
+               
                 Close
               </Button>
             </span>

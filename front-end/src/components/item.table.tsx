@@ -14,14 +14,17 @@ const ItemTable = ({ data, columns }: DataProps) => {
 
   return(
   
-    <Table
+    <Table 
+    className="font-serif border-spacing-1 bg-white"
     columns={columns}
     dataSource={data}
     bordered
-    style={{maxWidth:800,
-    minWidth:400}}
+    style={{maxWidth:850,
+    minWidth:300
+    
+  }}
     pagination={{ pageSize: 10 }}
-    scroll={{ x: "calc(350px + 50%)", y: 380 }}
+    scroll={{ x: "calc(450px + 50%)", y: 380 }}
   />
   )
 }

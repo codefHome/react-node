@@ -66,20 +66,17 @@ const[items,setItems]=useState<ItemTypes[]>([])
       title: "Name",
       dataIndex: "name",
       key: "name",
-      width: 100,
       fixed: "left",
     },
     {
       title: "createdAt",
       dataIndex: "createdAt",
       key: "createdAt",
-      width: 200,
     },
     {
       title: "Price",
       dataIndex: "price",
       key: "price",
-      width: 65,
       sorter: {
         compare: (a, b) => a.price - b.price,
         multiple: 3,
@@ -89,19 +86,16 @@ const[items,setItems]=useState<ItemTypes[]>([])
       title: "Tax",
       dataIndex: "salesTax",
       key: "salesTax",
-      width: 60,
     },
     {
       title: "Sku",
       key: "sku",
       dataIndex: "sku",
-      width: 150,
     },
     {
       title: "Quantity",
       dataIndex: "quantity",
       key: "quantity",
-      width: 90,
       sorter: {
         compare: (a, b) => a.quantity - b.quantity,
         multiple: 3,
@@ -111,13 +105,11 @@ const[items,setItems]=useState<ItemTypes[]>([])
       title: "Description",
       dataIndex: "description",
       key: "description",
-      width:200
       
     },
     {
       title: "Action",
       key: "action",
-      width: 120,
       fixed: "right",
       render: (items) => (
         <div className="flex flex-row space-y-2">
@@ -149,9 +141,10 @@ const[items,setItems]=useState<ItemTypes[]>([])
   return (
     <>
       <ItemContextProvider>
-        <div className="grid bg-slate-900 p-2">
-          <div className=" border-2 rounded-sm  p-4 bg-neutral-300">
-            <span>
+        <div style={{maxWidth:850,
+    minWidth:300}} className="grid bg-slate-700 p-2">
+          <div   className=" border-2 rounded-sm  p-4 bg-slate-900">
+           
               <Button
                 className="hover:text-2xl text-lg mb-3 float-right"
                 type="link"
@@ -160,10 +153,11 @@ const[items,setItems]=useState<ItemTypes[]>([])
                 
                 <strong> Add Item</strong>
               </Button>
-            </span>
+         
 
-            <ItemTable data={items} columns={columns} />
+           
           </div>
+          <ItemTable data={items} columns={columns} />
         </div>
 
         <ItemCreateForm
